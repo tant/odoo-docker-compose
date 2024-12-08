@@ -1,7 +1,6 @@
-version: '2'
 services:
   db:
-    image: postgres:17
+    image: postgres
     user: root
     environment:
       - POSTGRES_USER=odoo
@@ -17,8 +16,8 @@ services:
     depends_on:
       - db
     ports:
-      - "10018:8069"
-      - "20018:8072" # live chat
+      - "8069:8069"
+      - "8072:8072" # live chat
     tty: true
     command: --
     environment:
@@ -31,5 +30,4 @@ services:
       # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
       - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
-    restart: always             # run as a service
-    
+    #restart: always             # run as a service
